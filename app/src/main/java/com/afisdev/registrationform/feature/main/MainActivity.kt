@@ -1,4 +1,4 @@
-package com.afisdev.registrationform.feature
+package com.afisdev.registrationform.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

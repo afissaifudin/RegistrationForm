@@ -1,6 +1,6 @@
 package com.afisdev.registrationform.di.module
 
-import com.afisdev.registrationform.feature.MainActivity
+import com.afisdev.registrationform.feature.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,6 +11,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class MainActivityModule {
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     abstract fun contributeMainActivity(): MainActivity
 }
