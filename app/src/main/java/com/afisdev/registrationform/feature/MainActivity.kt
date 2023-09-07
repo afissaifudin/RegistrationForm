@@ -1,7 +1,8 @@
-package com.afisdev.registrationform
+package com.afisdev.registrationform.feature
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.afisdev.registrationform.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
