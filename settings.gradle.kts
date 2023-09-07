@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Registration Form"
 include(":app")
- 
+include(":common")
