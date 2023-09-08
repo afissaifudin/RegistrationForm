@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Registration Form</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc_welcome">Masukkan data diri kamu untuk validasi yang lebih terpercaya</string>
+    <string name="registrasi">Registrasi</string>
+    <string name="title_welcome">Validasi Data</string>
 </resources>

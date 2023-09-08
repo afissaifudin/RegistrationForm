@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="style_DefaultButton" parent="Widget.MaterialComponents.Button">
+        <item name="textAllCaps">false</item>
+        <item name="android:paddingStart">@dimen/dimen_48</item>
+        <item name="android:paddingEnd">@dimen/dimen_48</item>
+        <item name="android:paddingTop">@dimen/dimen_12</item>
+        <item name="android:paddingBottom">@dimen/dimen_12</item>
+        <item name="backgroundTint">@color/purple</item>
+    </style>
+
+    <style name="Heading1" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_dimen_32</item>
+        <item name="lineHeight">@dimen/text_line_height_60</item>
+    </style>
+
+    <style name="Heading2" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_dimen_32</item>
+        <item name="lineHeight">@dimen/text_line_height_40</item>
+    </style>
+
+    <style name="Heading3" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_dimen_24</item>
+        <item name="lineHeight">@dimen/text_line_height_32</item>
+    </style>
+
+    <style name="Heading4" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_dimen_20</item>
+        <item name="lineHeight">@dimen/text_line_height_28</item>
+    </style>
+
+    <style name="Body1" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_dimen_24</item>
+        <item name="lineHeight">@dimen/text_line_height_32</item>
+    </style>
+
+    <style name="Body2" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_dimen_16</item>
+        <item name="lineHeight">@dimen/text_line_height_24</item>
+    </style>
+
+    <style name="Body3" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_dimen_14</item>
+        <item name="lineHeight">@dimen/text_line_height_20</item>
+    </style>
+
+    <style name="Body4" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_dimen_20</item>
+        <item name="lineHeight">@dimen/text_line_height_28</item>
+    </style>
+
+
+
+</resources>
