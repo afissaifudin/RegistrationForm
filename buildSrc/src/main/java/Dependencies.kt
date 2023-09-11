@@ -7,10 +7,10 @@ object Versions {
     const val kotlin = "1.8.10"
     const val coroutines = "1.6.0"
     const val appCompat = "1.6.1"
-    const val material = "1.5.0"
+    const val material = "1.9.0"
 
     const val lifecycle = "2.6.1"
-    const val dagger = "2.46.1"
+    const val hilt = "2.44"
     const val gson = "2.10.1"
     const val okHttp = "5.0.0-alpha.11"
     const val retrofit = "2.9.0"
@@ -21,6 +21,8 @@ object Versions {
 
     const val timber = "5.0.1"
 
+    const val multiDex = "2.0.1"
+
     const val androidTestRunner = "1.4.0"
     const val espressoCore = "3.4.0"
     const val androidJunit = "1.1.5"
@@ -29,11 +31,9 @@ object Versions {
 }
 
 object Libraries {
-    // DAGGER 2
-    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-    const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
-    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-    const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    // Hilt
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
     // RETROFIT
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
@@ -53,6 +53,7 @@ object AndroidLibraries {
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
     // KOTLIN
+    const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     // Support library depends on this lightweight import
@@ -68,6 +69,8 @@ object AndroidLibraries {
     const val navigationFrag = "androidx.navigation:navigation-fragment-ktx:${Versions.nav}"
     const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav}"
 
+    // MULTIDEX
+    const val multiDex = "androidx.multidex:multidex:${Versions.multiDex}"
 }
 
 object TestLibraries {

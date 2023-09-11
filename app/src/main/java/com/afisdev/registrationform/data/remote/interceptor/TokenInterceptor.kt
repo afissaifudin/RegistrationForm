@@ -1,7 +1,7 @@
 package com.afisdev.registrationform.data.remote.interceptor
 
 import com.afisdev.registrationform.BuildConfig
-import com.afisdev.registrationform.utils.Constant
+import com.afisdev.common.util.Constant
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject

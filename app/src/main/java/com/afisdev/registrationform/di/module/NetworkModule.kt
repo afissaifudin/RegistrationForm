@@ -5,6 +5,8 @@ import com.afisdev.registrationform.data.remote.api.ApiService
 import com.afisdev.registrationform.data.remote.interceptor.TokenInterceptor
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,8 +18,12 @@ import javax.inject.Singleton
  * Created by afisdev on 08/09/2023.
  */
 @Module
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    internal fun interceptor(): TokenInterceptor = TokenInterceptor()
     @Provides
     @Singleton
     fun provideOkHttpClient(tokenInterceptor: TokenInterceptor): OkHttpClient {
@@ -30,7 +36,6 @@ object NetworkModule {
             .addInterceptor(tokenInterceptor)
             .build()
     }
-
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -40,7 +45,6 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
     }
-
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {

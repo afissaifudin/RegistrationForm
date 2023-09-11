@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     id("androidx.navigation.safeargs")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -36,20 +37,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         buildConfig = true
         dataBinding = true
     }
 }
-
-kotlin {
-    jvmToolchain(17)
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 dependencies {
@@ -66,19 +66,16 @@ dependencies {
     implementation(AndroidLibraries.navigation)
     implementation(AndroidLibraries.navigationFrag)
 
-    implementation(Libraries.dagger)
-    implementation(Libraries.daggerAndroidSupport)
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    kapt(Libraries.daggerCompiler)
-    kapt(Libraries.daggerAndroidProcessor)
+    implementation(Libraries.hiltAndroid)
+    kapt(Libraries.hiltAndroidCompiler)
 
     implementation(Libraries.retrofit)
     implementation(Libraries.retrofitGsonConverter)
     implementation(Libraries.httpLoggingInterceptor)
 
     implementation(Libraries.timber)
+
+    implementation(AndroidLibraries.multiDex)
 
     testImplementation(TestLibraries.junit)
 

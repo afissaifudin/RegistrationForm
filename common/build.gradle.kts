@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -25,16 +27,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         dataBinding = true
     }
 }
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
 
 dependencies {
     implementation(AndroidLibraries.coreKtx)
@@ -42,13 +48,11 @@ dependencies {
     implementation(AndroidLibraries.appCompat)
     implementation(AndroidLibraries.material)
     implementation(AndroidLibraries.constraintLayout)
+    implementation(AndroidLibraries.kotlin)
     implementation(AndroidLibraries.coroutine)
 
     implementation(AndroidLibraries.liveData)
     implementation(AndroidLibraries.lifecycleViewModel)
-
-    implementation(Libraries.dagger)
-    implementation(Libraries.daggerAndroidSupport)
 
     implementation(AndroidLibraries.navigation)
     implementation(AndroidLibraries.navigationFrag)
