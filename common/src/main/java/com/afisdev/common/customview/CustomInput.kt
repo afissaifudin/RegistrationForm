@@ -15,7 +15,7 @@ import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.afisdev.common.R
-import com.afisdev.common.databinding.CompCustomEdittextBinding
+import com.afisdev.common.databinding.CompCustomInputBinding
 import com.afisdev.common.extension.hideKeyboard
 import com.afisdev.common.util.Constant
 import java.text.SimpleDateFormat
@@ -25,12 +25,12 @@ import java.util.Calendar
 /**
  * Created by afisdev on 08/09/2023.
  */
-class CustomEditText constructor(
+class CustomInput constructor(
     context: Context,
     attributeSet: AttributeSet
 ): ConstraintLayout(context, attributeSet) {
 
-    private lateinit var binding: CompCustomEdittextBinding
+    private lateinit var binding: CompCustomInputBinding
 
     private var titleInputValue: String? = ""
     private var hintInputValue: String? = ""
@@ -51,18 +51,18 @@ class CustomEditText constructor(
 
     @SuppressLint("Recycle")
     private fun setupProperty(context: Context, attributeSet: AttributeSet) {
-        binding = CompCustomEdittextBinding.inflate(
+        binding = CompCustomInputBinding.inflate(
             LayoutInflater.from(context),
             this,
             true
         )
-        val attributes = context.obtainStyledAttributes(attributeSet, R.styleable.CustomEditText)
-        titleInputValue = attributes.getString(R.styleable.CustomEditText_titleInput)
-        hintInputValue = attributes.getString(R.styleable.CustomEditText_hintInput)
-        typeInputValue = attributes.getInt(R.styleable.CustomEditText_typeInput, InputType.TYPE_CLASS_TEXT)
-        errorInputValue = attributes.getString(R.styleable.CustomEditText_errorInput)
-        maximumInputValue = attributes.getInt(R.styleable.CustomEditText_maximumInput, 100)
-        minimumInputValue = attributes.getInt(R.styleable.CustomEditText_minimumInput, 0)
+        val attributes = context.obtainStyledAttributes(attributeSet, R.styleable.CustomInput)
+        titleInputValue = attributes.getString(R.styleable.CustomInput_titleInput)
+        hintInputValue = attributes.getString(R.styleable.CustomInput_hintInput)
+        typeInputValue = attributes.getInt(R.styleable.CustomInput_typeInput, InputType.TYPE_CLASS_TEXT)
+        errorInputValue = attributes.getString(R.styleable.CustomInput_errorInput)
+        maximumInputValue = attributes.getInt(R.styleable.CustomInput_maximumInput, 100)
+        minimumInputValue = attributes.getInt(R.styleable.CustomInput_minimumInput, 0)
 
         binding.tvLabelInput.text = titleInputValue
         setupView()
@@ -74,6 +74,9 @@ class CustomEditText constructor(
            tieMainEdittext.isVisible =  false
            tilDropdown.isVisible = true
            atvDropdown.hint = hintInputValue
+           atvDropdown.setOnItemClickListener { _, _, _, _ ->
+               atvDropdown.error = null
+           }
        } else {
            tieMainEdittext.apply {
                hint = hintInputValue
@@ -93,7 +96,10 @@ class CustomEditText constructor(
                 isFocusableInTouchMode = false
                 isFocusable = false
                 setOnClickListener {
-                    this@CustomEditText.hideKeyboard()
+                    this@CustomInput.apply {
+                        hideKeyboard()
+                        error = null
+                    }
                     chooseDate()
                 }
             }
@@ -127,6 +133,7 @@ class CustomEditText constructor(
             },
             yy, mm, dd
         )
+        datePicker.datePicker.maxDate = calendar.timeInMillis
         datePicker.show()
     }
 
@@ -137,7 +144,7 @@ class CustomEditText constructor(
                 if (!hasFocus) {
                     val text = binding.tilMainLayout.editText?.text.toString()
                     error = if (text.isEmpty()) {
-                        titleInput + context.getString(R.string.msg_error_cant_be_empty)
+                        context.getString(R.string.msg_error_cant_be_empty, titleInput)
                     } else if (text.length < minInput) {
                         errorMessage?: context.getString(R.string.msg_error_min_char, minInput)
                     } else {
@@ -159,32 +166,35 @@ class CustomEditText constructor(
         this.filters = arrayOf(InputFilter.LengthFilter(currentMax))
     }
 
-    private fun checkField() = with(binding) {
-        if (typeInputValue == DROPDOWNTYPE) {
-            val valueDropDown = atvDropdown.text.toString()
-            atvDropdown.error = if (valueDropDown.isEmpty()) {
-                titleInputValue + context.getString(R.string.msg_error_cant_be_empty)
-            } else null
-        } else {
-            val text = tilMainLayout.editText?.text.toString()
-            tieMainEdittext.error = if (text.isEmpty()) {
-                titleInputValue + context.getString(R.string.msg_error_cant_be_empty)
-            } else if (text.length < minimumInputValue) {
-                errorInputValue?: context.getString(R.string.msg_error_min_char, minimumInputValue)
+    fun checkAndGetFieldError(): String? {
+        with(binding) {
+            if (typeInputValue == DROPDOWNTYPE) {
+                val valueDropDown = atvDropdown.text.toString()
+                atvDropdown.error = if (valueDropDown.isEmpty()) {
+                    context.getString(R.string.msg_error_cant_be_empty,titleInputValue)
+                } else null
+                return if (atvDropdown.error != null) titleInputValue else null
             } else {
-                null
+                val valueEditText = tilMainLayout.editText?.text.toString()
+                tieMainEdittext.error = if (valueEditText.isEmpty()) {
+                    context.getString(R.string.msg_error_cant_be_empty, titleInputValue)
+                } else if (valueEditText.length < minimumInputValue) {
+                    errorInputValue?: context.getString(R.string.msg_error_min_char, minimumInputValue)
+                } else null
+                return if (tieMainEdittext.error != null) titleInputValue else null
+            }
+        }
+    }
+
+        fun getText(): String {
+        with(binding) {
+            return if (typeInputValue == DROPDOWNTYPE) {
+                tilDropdown.editText?.text.toString()
+            } else {
+                tilMainLayout.editText?.text.toString()
             }
         }
 
-    }
-
-    fun isCustomEditTextError(): Boolean {
-        checkField()
-        return if (typeInputValue == DROPDOWNTYPE) {
-            binding.atvDropdown.text.toString().isEmpty()
-        } else {
-            binding.tieMainEdittext.error != null
-        }
     }
 
     companion object {
