@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.text.InputFilter
 import android.text.InputType
+import android.text.method.DigitsKeyListener
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -70,7 +71,7 @@ class CustomInput constructor(
     }
 
     private fun setupView() = with(binding) {
-       if (typeInputValue == DROPDOWNTYPE ) {
+       if (typeInputValue == DROPDOWN_TYPE ) {
            tieMainEdittext.isVisible =  false
            tilDropdown.isVisible = true
            atvDropdown.hint = hintInputValue
@@ -80,7 +81,7 @@ class CustomInput constructor(
        } else {
            tieMainEdittext.apply {
                hint = hintInputValue
-               inputType = typeInputValue
+               inputType = getTypeInputValue()
                maxLengthInput(maximumInputValue)
                minLengthInputWithError(minimumInputValue, errorInputValue, titleInputValue)
                setupViewInputValue(typeInputValue)
@@ -88,9 +89,17 @@ class CustomInput constructor(
        }
     }
 
+    private fun getTypeInputValue(): Int {
+        return when(typeInputValue) {
+            TEXT_TYPE, CHARONLY_TYPE -> InputType.TYPE_CLASS_TEXT
+            NUMBER_TYPE -> InputType.TYPE_CLASS_NUMBER
+            else -> InputType.TYPE_NULL
+        }
+    }
+
     private fun setupViewInputValue(typeInputValue: Int) {
         // change view when view is datepicker / dropdown
-        if (typeInputValue == DATEPICKERTYPE) {
+        if (typeInputValue == DATEPICKER_TYPE) {
             binding.tilMainLayout.setOnKeyListener(null)
             binding.tieMainEdittext.apply {
                 isFocusableInTouchMode = false
@@ -103,6 +112,8 @@ class CustomInput constructor(
                     chooseDate()
                 }
             }
+        } else if (typeInputValue == CHARONLY_TYPE) {
+            binding.tieMainEdittext.keyListener = DigitsKeyListener.getInstance(context.getString(R.string.accepted_char))
         }
     }
 
@@ -168,7 +179,7 @@ class CustomInput constructor(
 
     fun checkAndGetFieldError(): String? {
         with(binding) {
-            if (typeInputValue == DROPDOWNTYPE) {
+            if (typeInputValue == DROPDOWN_TYPE) {
                 val valueDropDown = atvDropdown.text.toString()
                 atvDropdown.error = if (valueDropDown.isEmpty()) {
                     context.getString(R.string.msg_error_cant_be_empty,titleInputValue)
@@ -186,9 +197,9 @@ class CustomInput constructor(
         }
     }
 
-        fun getText(): String {
+    fun getText(): String {
         with(binding) {
-            return if (typeInputValue == DROPDOWNTYPE) {
+            return if (typeInputValue == DROPDOWN_TYPE) {
                 tilDropdown.editText?.text.toString()
             } else {
                 tilMainLayout.editText?.text.toString()
@@ -198,7 +209,10 @@ class CustomInput constructor(
     }
 
     companion object {
-        const val DATEPICKERTYPE = 0
-        const val DROPDOWNTYPE = 3
+        const val TEXT_TYPE = 1
+        const val NUMBER_TYPE = 2
+        const val CHARONLY_TYPE = 3
+        const val DATEPICKER_TYPE = 4
+        const val DROPDOWN_TYPE = 5
     }
 }
