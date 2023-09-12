@@ -9,9 +9,10 @@
         <attr name="typeInput" format="enum">
             <enum name="text" value="1" />
             <enum name="number" value="2" />
-            <enum name="charonly" value="3" />
-            <enum name="datepicker" value="4" />
-            <enum name="dropdown" value="5" />
+            <enum name="alphabet" value="3" />
+            <enum name="alphanumeric" value="4" />
+            <enum name="datepicker" value="5" />
+            <enum name="dropdown" value="6" />
         </attr>
     </declare-styleable>
 </resources>

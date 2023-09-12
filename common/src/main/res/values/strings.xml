@@ -4,5 +4,7 @@
     <string name="msg_error_min_char">Please enter at least %d characters</string>
     <string name="msg_error_cant_be_empty">%s cannot be empty</string>
 
-    <string name="accepted_char">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</string>
+    <string name="accepted_numeric">1234567890</string>
+    <string name="accepted_char">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</string>
+    <string name="accepted_alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz1234567890</string>
 </resources>

@@ -65,12 +65,12 @@ class CustomInput constructor(
         maximumInputValue = attributes.getInt(R.styleable.CustomInput_maximumInput, 100)
         minimumInputValue = attributes.getInt(R.styleable.CustomInput_minimumInput, 0)
 
-        binding.tvLabelInput.text = titleInputValue
         setupView()
         attributes.recycle()
     }
 
     private fun setupView() = with(binding) {
+        binding.tvLabelInput.text = titleInputValue
        if (typeInputValue == DROPDOWN_TYPE ) {
            tieMainEdittext.isVisible =  false
            tilDropdown.isVisible = true
@@ -80,40 +80,55 @@ class CustomInput constructor(
            }
        } else {
            tieMainEdittext.apply {
+               setupViewInputValue(typeInputValue)
                hint = hintInputValue
-               inputType = getTypeInputValue()
+               setRawInputType(getTypeInputValue())
                maxLengthInput(maximumInputValue)
                minLengthInputWithError(minimumInputValue, errorInputValue, titleInputValue)
-               setupViewInputValue(typeInputValue)
            }
        }
     }
 
     private fun getTypeInputValue(): Int {
         return when(typeInputValue) {
-            TEXT_TYPE, CHARONLY_TYPE -> InputType.TYPE_CLASS_TEXT
+            TEXT_TYPE, ALPHABET_TYPE -> InputType.TYPE_CLASS_TEXT
             NUMBER_TYPE -> InputType.TYPE_CLASS_NUMBER
             else -> InputType.TYPE_NULL
         }
     }
 
-    private fun setupViewInputValue(typeInputValue: Int) {
+    private fun setupViewInputValue(typeInputValue : Int) {
         // change view when view is datepicker / dropdown
-        if (typeInputValue == DATEPICKER_TYPE) {
-            binding.tilMainLayout.setOnKeyListener(null)
-            binding.tieMainEdittext.apply {
-                isFocusableInTouchMode = false
-                isFocusable = false
-                setOnClickListener {
-                    this@CustomInput.apply {
-                        hideKeyboard()
-                        error = null
+        when (typeInputValue) {
+            DATEPICKER_TYPE -> {
+                binding.tilMainLayout.setOnKeyListener(null)
+                binding.tieMainEdittext.apply {
+                    isFocusableInTouchMode = false
+                    isFocusable = false
+                    setOnClickListener {
+                        this@CustomInput.apply {
+                            hideKeyboard()
+                            error = null
+                        }
+                        chooseDate()
                     }
-                    chooseDate()
                 }
             }
-        } else if (typeInputValue == CHARONLY_TYPE) {
-            binding.tieMainEdittext.keyListener = DigitsKeyListener.getInstance(context.getString(R.string.accepted_char))
+            NUMBER_TYPE -> {
+                binding.tieMainEdittext.keyListener = DigitsKeyListener.getInstance(
+                    context.getString(R.string.accepted_numeric)
+                )
+            }
+            ALPHABET_TYPE -> {
+                binding.tieMainEdittext.keyListener = DigitsKeyListener.getInstance(
+                    context.getString(R.string.accepted_char)
+                )
+            }
+            ALPHANUMERIC_TYPE -> {
+                binding.tieMainEdittext.keyListener = DigitsKeyListener.getInstance(
+                    context.getString(R.string.accepted_alphanumeric)
+                )
+            }
         }
     }
 
@@ -211,8 +226,9 @@ class CustomInput constructor(
     companion object {
         const val TEXT_TYPE = 1
         const val NUMBER_TYPE = 2
-        const val CHARONLY_TYPE = 3
-        const val DATEPICKER_TYPE = 4
-        const val DROPDOWN_TYPE = 5
+        const val ALPHABET_TYPE = 3
+        const val ALPHANUMERIC_TYPE = 4
+        const val DATEPICKER_TYPE = 5
+        const val DROPDOWN_TYPE = 6
     }
 }
