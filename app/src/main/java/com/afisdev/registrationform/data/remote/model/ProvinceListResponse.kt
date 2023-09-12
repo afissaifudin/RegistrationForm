@@ -1,7 +1,6 @@
 package com.afisdev.registrationform.data.remote.model
 
 import com.afisdev.common.model.BaseResponse
-import com.google.gson.annotations.SerializedName
 
 
 /**
@@ -9,13 +8,10 @@ import com.google.gson.annotations.SerializedName
  */
 data class ProvinceListResponse(
 
-    @SerializedName("message")
     override var status: String?,
 
-    @SerializedName("message")
     override var message: String?,
 
-    @SerializedName("data")
     val data: List<ProvinceResponse>
 
 ): BaseResponse

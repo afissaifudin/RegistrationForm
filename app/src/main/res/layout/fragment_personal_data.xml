@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".feature.personaldata.PersonalDataFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="fragment"
+            type="com.afisdev.registrationform.feature.personaldata.PersonalDataFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingVertical="30dp"
+        android:paddingHorizontal="20dp"
+        tools:context=".feature.personaldata.PersonalDataFragment">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/icon_back" />
+
+        <TextView
+            android:id="@+id/tv_personal_data"
+            style="@style/Heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:text="@string/title_personal_data"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_back"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_personal_data">
+            <com.afisdev.common.customview.CustomInput
+                android:id="@+id/ci_national_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                app:titleInput="@string/label_national_id"
+                app:hintInput="@string/hint_national_id"
+                app:minimumInput="16"
+                app:maximumInput="16"
+                app:typeInput="number"/>
+            <com.afisdev.common.customview.CustomInput
+                android:id="@+id/ci_fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                app:titleInput="@string/label_fullname"
+                app:hintInput="@string/hint_fullname"
+                app:maximumInput="10"
+                app:typeInput="alphabet"/>
+            <com.afisdev.common.customview.CustomInput
+                android:id="@+id/ci_bank_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                app:titleInput="@string/label_bank_account"
+                app:hintInput="@string/hint_bank_account"
+                app:minimumInput="8"
+                app:typeInput="number"/>
+            <com.afisdev.common.customview.CustomInput
+                android:id="@+id/ci_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                app:titleInput="@string/label_education"
+                app:hintInput="@string/hint_education"
+                app:typeInput="dropdown"/>
+            <com.afisdev.common.customview.CustomInput
+                android:id="@+id/ci_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_12"
+                app:titleInput="@string/label_date_of_birth"
+                app:hintInput="@string/hint_date_of_birth"
+                app:typeInput="datepicker"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_next"
+            style="@style/style_DefaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_48"
+            android:layout_marginBottom="@dimen/dimen_24"
+            android:text="@string/label_next"
+            android:onClick="@{()->fragment.nextPage()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

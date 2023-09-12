@@ -10,6 +10,11 @@
         <item name="backgroundTint">@color/purple</item>
     </style>
 
+    <style name="style_DefaultOutline" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <item name="boxStrokeColor">#D3D3D3</item>
+        <item name="boxStrokeWidth">1dp</item>
+    </style>
+
     <style name="Heading1" parent="TextAppearance.AppCompat">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_dimen_32</item>

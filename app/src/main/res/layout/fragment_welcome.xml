@@ -1,59 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/dimen_20"
-    tools:context=".feature.welcome.WelcomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/iv_banner_welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_banner_welcome"
-        app:layout_constraintBottom_toTopOf="@+id/btn_registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+    <data>
+        <variable
+            name="fragment"
+            type="com.afisdev.registrationform.feature.welcome.WelcomeFragment" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_title_welcome"
-        style="@style/Heading1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:text="@string/title_welcome"
-        android:textSize="@dimen/text_dimen_32"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_banner_welcome" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/dimen_20"
+        tools:context=".feature.welcome.WelcomeFragment">
 
-    <TextView
-        android:id="@+id/tv_desc_welcome"
-        style="@style/Body2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:gravity="center"
-        android:text="@string/desc_welcome"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title_welcome" />
+        <ImageView
+            android:id="@+id/iv_banner_welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_banner_welcome"
+            app:layout_constraintBottom_toTopOf="@+id/btn_registration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            android:importantForAccessibility="no" />
 
-    <Button
-        android:id="@+id/btn_registration"
-        style="@style/style_DefaultButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_48"
-        android:layout_marginBottom="@dimen/dimen_32"
-        android:text="@string/registrasi"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_title_welcome"
+            style="@style/Heading1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:text="@string/title_welcome"
+            android:textSize="@dimen/text_dimen_32"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_banner_welcome" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_desc_welcome"
+            style="@style/Body2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:gravity="center"
+            android:text="@string/desc_welcome"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_welcome" />
+
+        <Button
+            android:id="@+id/btn_registration"
+            style="@style/style_DefaultButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_48"
+            android:layout_marginBottom="@dimen/dimen_32"
+            android:text="@string/label_registration"
+            android:onClick="@{()->fragment.openRegistration()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
