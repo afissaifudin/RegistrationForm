@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.afisdev.registrationform.feature.welcome.WelcomeFragment"
-        android:label="fragment_personal_data"
-        tools:layout="@layout/fragment_personal_data" >
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
         <action
             android:id="@+id/action_welcomeFragment_to_personalDataFragment"
             app:destination="@id/personalDataFragment" />
@@ -28,8 +28,8 @@
     <fragment
         android:id="@+id/residentialDataFragment"
         android:name="com.afisdev.registrationform.feature.residentialdata.ResidentialDataFragment"
-        android:label="fragment_personal_data"
-        tools:layout="@layout/fragment_personal_data" >
+        android:label="fragment_residential_data"
+        tools:layout="@layout/fragment_residential_data" >
         <action
             android:id="@+id/action_residentialDataFragment_to_previewFragment"
             app:destination="@id/previewFragment" />
@@ -38,8 +38,8 @@
     <fragment
         android:id="@+id/previewFragment"
         android:name="com.afisdev.registrationform.feature.preview.PreviewFragment"
-        android:label="fragment_personal_data"
-        tools:layout="@layout/fragment_personal_data" >
+        android:label="fragment_preview"
+        tools:layout="@layout/fragment_preview" >
         <action
             android:id="@+id/action_previewFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
