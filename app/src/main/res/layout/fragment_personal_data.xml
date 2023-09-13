@@ -12,8 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="30dp"
-        android:paddingHorizontal="20dp"
+        android:paddingHorizontal="@dimen/dimen_20"
+        android:paddingVertical="@dimen/dimen_32"
         tools:context=".feature.personaldata.PersonalDataFragment">
 
         <ImageView
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_back"
             android:layout_marginTop="10dp"
+            android:onClick="@{()->fragment.navigateBack()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/icon_back" />
@@ -46,7 +47,6 @@
                 android:id="@+id/ci_national_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_12"
                 app:titleInput="@string/label_national_id"
                 app:hintInput="@string/hint_national_id"
                 app:minimumInput="16"
@@ -56,7 +56,6 @@
                 android:id="@+id/ci_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_12"
                 app:titleInput="@string/label_fullname"
                 app:hintInput="@string/hint_fullname"
                 app:maximumInput="10"
@@ -65,7 +64,6 @@
                 android:id="@+id/ci_bank_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_12"
                 app:titleInput="@string/label_bank_account"
                 app:hintInput="@string/hint_bank_account"
                 app:minimumInput="8"
@@ -74,7 +72,6 @@
                 android:id="@+id/ci_education"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_12"
                 app:titleInput="@string/label_education"
                 app:hintInput="@string/hint_education"
                 app:typeInput="dropdown"/>
@@ -82,7 +79,6 @@
                 android:id="@+id/ci_dob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_12"
                 app:titleInput="@string/label_date_of_birth"
                 app:hintInput="@string/hint_date_of_birth"
                 app:typeInput="datepicker"/>

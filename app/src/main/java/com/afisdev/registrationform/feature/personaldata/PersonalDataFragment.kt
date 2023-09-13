@@ -23,29 +23,32 @@ class PersonalDataFragment : BaseFragment<FragmentPersonalDataBinding, SharedVie
     override fun viewDidLoad() {
         binding.fragment = this
         setupView()
+        setupData()
+    }
+
+    override fun onBackEvent() {
+        viewModel.resetData()
+        super.onBackEvent()
+    }
+
+    private fun setupData() = with(binding) {
+        viewModel.personalDataEntity.value?.let {
+            ciNationalId.setText(it.nationalId)
+            ciFullname.setText(it.fullName)
+            ciBankAccount.setText(it.bankAccount)
+            ciEducation.setText(it.education)
+            ciDob.setText(it.dateOfBirth)
+        }
     }
 
     private fun setupView() = with(binding) {
+        customFields = arrayListOf(ciNationalId, ciFullname, ciBankAccount, ciEducation, ciDob)
         val educationOptions = Education.values().map { it.toString() }
         ciEducation.listInputValue = educationOptions
-
-        customFields = arrayListOf(ciNationalId, ciFullname, ciBankAccount, ciEducation, ciDob)
-
-        ivBack.setOnClickListener{
-            navigateBack()
-        }
     }
 
     fun nextPage() {
-        val fieldsError = ArrayList<String?>()
-        customFields.forEach{ customInput ->
-            fieldsError.add(customInput.checkAndGetFieldError())
-        }
-        val fieldErrorNonNull = fieldsError.filterNotNull()
-        val resutlFields = fieldErrorNonNull.joinToString(", ")
-        if (fieldErrorNonNull.isNotEmpty()) {
-            showSnackBar(getString(R.string.msg_error_check_field, resutlFields))
-        } else {
+        validationData(customFields) {
             val personalDataEntity = PersonalDataEntity(
                 nationalId = binding.ciNationalId.getText(),
                 fullName = binding.ciFullname.getText(),
