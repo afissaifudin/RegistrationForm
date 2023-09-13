@@ -3,7 +3,7 @@
 
     <string name="title_welcome">Data Validation</string>
     <string name="desc_welcome">Enter your personal information for more reliable validation</string>
-    <string name="label_registration">Registration</string>
+    <string name="label_register">Register</string>
     <string name="label_next">Next</string>
     <string name="label_submit">Submit</string>
 
@@ -30,6 +30,10 @@
     <string name="label_province">Province</string>
     <string name="hint_province">Enter your Province</string>
 
-    <string name="msg_error_check_field">Please check field %s</string>
     <string name="icon_back">icon back</string>
+    <string name="title_review">Review Data</string>
+
+    <string name="title_registration_successful">Registration Successful</string>
+    <string name="desc_data_saved">Your data has been saved</string>
+    <string name="label_okay">Okay</string>
 </resources>
