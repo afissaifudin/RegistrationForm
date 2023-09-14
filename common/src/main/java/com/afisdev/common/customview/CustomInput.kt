@@ -105,7 +105,7 @@ class CustomInput constructor(
 
     private fun getTypeInputValue(): Int {
         return when(typeInputValue) {
-            TEXT_TYPE, ALPHABET_TYPE -> InputType.TYPE_CLASS_TEXT
+            TEXT_TYPE, ALPHABET_TYPE, ALPHANUMERIC_TYPE -> InputType.TYPE_CLASS_TEXT
             NUMBER_TYPE -> InputType.TYPE_CLASS_NUMBER
             else -> InputType.TYPE_NULL
         }
