@@ -60,7 +60,7 @@ class ResidentialDataFragment : BaseFragment<FragmentResidentialDataBinding, Sha
     }
 
     fun nextPage() {
-        validationData(customFields) {
+        dataValidation(customFields) {
             saveStateData()
             navigate(ResidentialDataFragmentDirections.actionResidentialDataFragmentToPreviewFragment())
         }
