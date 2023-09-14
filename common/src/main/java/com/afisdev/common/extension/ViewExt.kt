@@ -1,9 +1,11 @@
 package com.afisdev.common.extension
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.BindingAdapter
+import com.afisdev.common.R
 import com.afisdev.common.customview.CustomInput
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,4 +26,26 @@ fun View.hideKeyboard() {
 @BindingAdapter("textInputValue")
 fun CustomInput.setTextInputValue(value: String?) {
     setText(value)
+}
+
+fun View.showConfirmationDialog(
+    title: String,
+    message: String,
+    labelYes: String = context.getString(R.string.label_yes),
+    labelNo: String = context.getString(R.string.label_no),
+    onConfirm: () -> Unit,
+    onCancel: () -> Unit = {}
+) {
+    AlertDialog.Builder(this.context)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton(labelYes) { _, _ ->
+            onConfirm()
+        }
+        .setNegativeButton(labelNo) { dialog, _ ->
+            dialog.dismiss()
+            onCancel()
+        }
+        .create()
+        .show()
 }

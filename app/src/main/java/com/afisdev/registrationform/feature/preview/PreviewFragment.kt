@@ -1,60 +1,38 @@
 package com.afisdev.registrationform.feature.preview
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import com.afisdev.common.extension.showConfirmationDialog
+import com.afisdev.common.ui.BaseFragment
 import com.afisdev.registrationform.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.afisdev.registrationform.databinding.FragmentPreviewBinding
+import com.afisdev.registrationform.feature.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A simple [Fragment] subclass.
- * Use the [PreviewFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * Created by afisdev on 08/09/2023.
  */
-class PreviewFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+@AndroidEntryPoint
+class PreviewFragment : BaseFragment<FragmentPreviewBinding, SharedViewModel>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    override val viewModel: SharedViewModel by activityViewModels()
+    override val layoutResource = R.layout.fragment_preview
+
+    override fun viewDidLoad() {
+        binding.fragment = this
+        binding.personalDataEntity = viewModel.personalDataEntity.value
+        binding.residenceDataEntity = viewModel.residentialDataEntity.value
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preview, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PreviewFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PreviewFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    fun register() {
+        view?.showConfirmationDialog(
+            title = getString(R.string.title_confirmation),
+            message = getString(R.string.desc_confirmation),
+            labelYes = getString(R.string.label_confirm),
+            labelNo = getString(R.string.label_cancel),
+            onConfirm = {
+                viewModel.resetData()
+                navigate(PreviewFragmentDirections.actionPreviewFragmentToRegistrationSuccessFragment())
             }
+        )
     }
 }

@@ -1,14 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".feature.preview.PreviewFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="personalDataEntity"
+            type="com.afisdev.registrationform.feature.personaldata.PersonalDataEntity" />
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+        <variable
+            name="residenceDataEntity"
+            type="com.afisdev.registrationform.feature.residentialdata.ResidentialDataEntity" />
+
+        <variable
+            name="fragment"
+            type="com.afisdev.registrationform.feature.preview.PreviewFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".feature.preview.PreviewFragment">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/dimen_20"
+                android:paddingVertical="@dimen/dimen_32">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/icon_back"
+                    android:src="@drawable/ic_back"
+                    android:onClick="@{()->fragment.navigateBack()}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_review_data"
+                    style="@style/Heading1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:text="@string/title_review"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_back" />
+
+                <LinearLayout
+                    android:id="@+id/ll_input_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_review_data" >
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_national_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:titleInput="@string/label_national_id"
+                        app:hintInput="@string/hint_national_id"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.nationalId}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_fullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:titleInput="@string/label_fullname"
+                        app:hintInput="@string/hint_fullname"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.fullName}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_bank_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:titleInput="@string/label_bank_account"
+                        app:hintInput="@string/hint_bank_account"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.bankAccount}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_education"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:titleInput="@string/label_education"
+                        app:hintInput="@string/hint_education"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.education}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:titleInput="@string/label_date_of_birth"
+                        app:hintInput="@string/hint_date_of_birth"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.dateOfBirth}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_domicilie_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintInput="@string/hint_domicile_address"
+                        app:maximumInput="100"
+                        app:titleInput="@string/label_domicile_address"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.nationalId}" />
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_housing_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintInput="@string/hint_housing_type"
+                        app:titleInput="@string/label_housing_type"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.nationalId}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_housing_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintInput="@string/hint_housing_number"
+                        app:titleInput="@string/label_housing_number"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.nationalId}"/>
+                    <com.afisdev.common.customview.CustomInput
+                        android:id="@+id/ci_province"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintInput="@string/hint_province"
+                        app:titleInput="@string/label_province"
+                        app:editableInput="false"
+                        app:textInputValue="@{personalDataEntity.nationalId}" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_register"
+                    style="@style/style_DefaultButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_32"
+                    android:layout_marginHorizontal="@dimen/dimen_48"
+                    android:layout_marginBottom="@dimen/dimen_12"
+                    android:text="@string/label_register"
+                    android:onClick="@{()->fragment.register()}"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_input_view"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

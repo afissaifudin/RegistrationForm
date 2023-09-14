@@ -3,8 +3,11 @@
     <string name="hint">Hint</string>
     <string name="msg_error_min_char">Please enter at least %d characters</string>
     <string name="msg_error_cant_be_empty">%s cannot be empty</string>
+    <string name="msg_error_check_field">Please check field %s</string>
 
     <string name="accepted_numeric">1234567890</string>
     <string name="accepted_char">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</string>
     <string name="accepted_alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz1234567890</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
 </resources>
