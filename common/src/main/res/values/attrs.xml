@@ -6,6 +6,7 @@
         <attr name="errorInput" format="string" />
         <attr name="maximumInput" format="integer" />
         <attr name="minimumInput" format="integer" />
+        <attr name="editableInput" format="boolean" />
         <attr name="typeInput" format="enum">
             <enum name="text" value="1" />
             <enum name="number" value="2" />

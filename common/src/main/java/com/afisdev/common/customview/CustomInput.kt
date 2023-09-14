@@ -38,12 +38,13 @@ class CustomInput constructor(
     private var minimumInputValue: Int = 0
     private var maximumInputValue: Int? = 0
     private var errorInputValue: String? = null
+    private var editableInputValue: Boolean = true
     private var typeInputValue: Int = 0
 
     var listInputValue: List<String> = arrayListOf()
         set(value) {
             field = value
-            setAdapterDropdown()
+            setAdapterDropdown(value)
         }
 
     init {
@@ -64,24 +65,37 @@ class CustomInput constructor(
         errorInputValue = attributes.getString(R.styleable.CustomInput_errorInput)
         maximumInputValue = attributes.getInt(R.styleable.CustomInput_maximumInput, 100)
         minimumInputValue = attributes.getInt(R.styleable.CustomInput_minimumInput, 0)
+        editableInputValue = attributes.getBoolean(R.styleable.CustomInput_editableInput, true)
 
         setupView()
         attributes.recycle()
     }
 
+    /**
+     *  need regenerate id
+     *  prevents mirroring of data when reused
+     */
     private fun setupView() = with(binding) {
         binding.tvLabelInput.text = titleInputValue
        if (typeInputValue == DROPDOWN_TYPE ) {
            tieMainEdittext.isVisible =  false
            tilDropdown.isVisible = true
-           atvDropdown.hint = hintInputValue
-           atvDropdown.setOnItemClickListener { _, _, _, _ ->
-               atvDropdown.error = null
+           atvDropdown.apply {
+               id = generateViewId()
+               hint = hintInputValue
+               setOnFocusChangeListener { _, hasFocus ->
+                   if (hasFocus) {
+                       hideKeyboard()
+                       error = null
+                   }
+               }
            }
        } else {
            tieMainEdittext.apply {
-               setupViewInputValue(typeInputValue)
+               id = generateViewId()
                hint = hintInputValue
+               isEnabled = editableInputValue
+               setupTypeInputView(typeInputValue)
                setRawInputType(getTypeInputValue())
                maxLengthInput(maximumInputValue)
                minLengthInputWithError(minimumInputValue, errorInputValue, titleInputValue)
@@ -97,7 +111,7 @@ class CustomInput constructor(
         }
     }
 
-    private fun setupViewInputValue(typeInputValue : Int) {
+    private fun setupTypeInputView(typeInputValue : Int) {
         // change view when view is datepicker / dropdown
         when (typeInputValue) {
             DATEPICKER_TYPE -> {
@@ -164,7 +178,6 @@ class CustomInput constructor(
     }
 
     private fun minLengthInputWithError(minInput: Int, errorMessage: String?, titleInput: String? = "") {
-
         binding.tieMainEdittext.apply {
             this@apply.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
                 if (!hasFocus) {
@@ -181,8 +194,8 @@ class CustomInput constructor(
         }
     }
 
-    private fun setAdapterDropdown() {
-        val listDropdown = listInputValue.toTypedArray()
+    private fun setAdapterDropdown(listValue: List<String>) {
+        val listDropdown = listValue.toTypedArray()
         val adapter = ArrayAdapter(context, android.R.layout.simple_dropdown_item_1line, listDropdown)
         binding.atvDropdown.setAdapter(adapter)
     }
@@ -218,6 +231,17 @@ class CustomInput constructor(
                 tilDropdown.editText?.text.toString()
             } else {
                 tilMainLayout.editText?.text.toString()
+            }
+        }
+
+    }
+
+    fun setText(value: String?) {
+        with(binding) {
+            if (typeInputValue == DROPDOWN_TYPE) {
+                atvDropdown.setText(value, false)
+            } else {
+                tilMainLayout.editText?.setText(value)
             }
         }
 
