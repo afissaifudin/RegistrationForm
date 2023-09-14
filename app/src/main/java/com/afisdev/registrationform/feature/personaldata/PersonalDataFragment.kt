@@ -2,6 +2,7 @@ package com.afisdev.registrationform.feature.personaldata
 
 import androidx.fragment.app.activityViewModels
 import com.afisdev.common.customview.CustomInput
+import com.afisdev.common.extension.showConfirmationDialog
 import com.afisdev.common.ui.BaseFragment
 import com.afisdev.registrationform.R
 import com.afisdev.registrationform.databinding.FragmentPersonalDataBinding
@@ -27,8 +28,20 @@ class PersonalDataFragment : BaseFragment<FragmentPersonalDataBinding, SharedVie
     }
 
     override fun onBackEvent() {
-        viewModel.resetData()
-        super.onBackEvent()
+        if (isFieldFilled(customFields)) {
+            view?.showConfirmationDialog(
+                title = getString(R.string.title_discard_changes),
+                message = getString(R.string.desc_discard_changes),
+                labelYes = getString(R.string.label_discard),
+                labelNo = getString(R.string.label_cancel),
+                onConfirm = {
+                    viewModel.resetData()
+                    super.onBackEvent()
+                }
+            )
+        } else {
+            super.onBackEvent()
+        }
     }
 
     private fun setupData() = with(binding) {
@@ -48,7 +61,7 @@ class PersonalDataFragment : BaseFragment<FragmentPersonalDataBinding, SharedVie
     }
 
     fun nextPage() {
-        validationData(customFields) {
+        dataValidation(customFields) {
             val personalDataEntity = PersonalDataEntity(
                 nationalId = binding.ciNationalId.getText(),
                 fullName = binding.ciFullname.getText(),

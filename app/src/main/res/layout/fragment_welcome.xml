@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dimen_48"
             android:layout_marginBottom="@dimen/dimen_32"
-            android:text="@string/label_registration"
+            android:text="@string/label_register"
             android:onClick="@{()->fragment.openRegistration()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
