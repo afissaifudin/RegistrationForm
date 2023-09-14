@@ -25,7 +25,7 @@ class SharedViewModel @Inject constructor(
     private val _personalDataEntity = MutableLiveData<PersonalDataEntity?>()
     val personalDataEntity: LiveData<PersonalDataEntity?> = _personalDataEntity
 
-     private val _residentialDataEntity = MutableLiveData<ResidentialDataEntity?>()
+    private val _residentialDataEntity = MutableLiveData<ResidentialDataEntity?>()
     val residentialDataEntity: LiveData<ResidentialDataEntity?> = _residentialDataEntity
 
     private val _provinceList = MutableLiveData<List<String>>()
@@ -52,9 +52,7 @@ class SharedViewModel @Inject constructor(
                         result.data?.let { provinceListResp ->
                             // need refactor, using mapper
                             _provinceList.postValue(
-                                provinceListResp.data.map {
-                                    it.name.orEmpty()
-                                }
+                                provinceListResp.data.map { it.name.orEmpty() }
                             )
                         }
                     }

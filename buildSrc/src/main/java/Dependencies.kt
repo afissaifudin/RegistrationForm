@@ -28,6 +28,7 @@ object Versions {
     const val androidJunit = "1.1.5"
     const val junit = "4.13.2"
     const val mockk = "1.12.1"
+    const val archCoreTest = "2.1.0"
 }
 
 object Libraries {
@@ -81,9 +82,12 @@ object TestLibraries {
     const val junitTestExt= "androidx.test.ext:junit:${Versions.androidJunit}"
     const val junit = "junit:junit:${Versions.junit}"
 
-    // MOCK
+    // TEST
     const val mockkAndroid = "io.mockk:mockk-android:${Versions.mockk}"
     const val mockk = "io.mockk:mockk:${Versions.mockk}"
+    const val archCoreTest = "androidx.arch.core:core-testing:${Versions.archCoreTest}"
+    const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+
 
     // COROUTINE
     const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"

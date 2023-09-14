@@ -78,6 +78,10 @@ dependencies {
     implementation(AndroidLibraries.multiDex)
 
     testImplementation(TestLibraries.junit)
+    testImplementation(TestLibraries.mockk)
+    testImplementation(TestLibraries.archCoreTest)
+    testImplementation(TestLibraries.coroutineTest)
+    testImplementation(TestLibraries.androidTestRunner)
 
     androidTestImplementation(TestLibraries.junitTestExt)
     androidTestImplementation(TestLibraries.espresso)
