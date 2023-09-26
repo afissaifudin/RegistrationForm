@@ -26,7 +26,7 @@ The common module provides essential classes, extensions, constants, and shared 
 CustomInput is a component created to efficiently manage all fields within this application. This versatile component simplifies the handling of various input fields, enhancing the overall usability and functionality of the application.
 
 ## Preview Navigation
-<img src="https://github.com/afissaifudin/RegistrationForm/tree/master/preview/navigation.png"/>
+<img src="https://github.com/afissaifudin/RegistrationForm/blob/master/preview/navigation.png"/>
 
 ## Preview Apps
-![Welcome Page](https://github.com/afissaifudin/RegistrationForm/tree/master/preview/welcome.png) ![Personal Page](https://github.com/afissaifudin/RegistrationForm/tree/master/preview/personal.png) ![Residence Page](https://github.com/afissaifudin/RegistrationForm/tree/master/preview/residence.png) ![Review Page](https://github.com/afissaifudin/RegistrationForm/tree/master/preview/review.png) ![Success Page](https://github.com/afissaifudin/RegistrationForm/tree/master/preview/success.png)
+![Welcome Page](https://github.com/afissaifudin/RegistrationForm/blob/master/preview/welcome.png) ![Personal Page](https://github.com/afissaifudin/RegistrationForm/blob/master/preview/personal.png) ![Residence Page](https://github.com/afissaifudin/RegistrationForm/blob/master/preview/residence.png) ![Review Page](https://github.com/afissaifudin/RegistrationForm/blob/master/preview/review.png) ![Success Page](https://github.com/afissaifudin/RegistrationForm/blob/master/preview/success.png)
